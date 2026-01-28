@@ -1,10 +1,13 @@
 package view;
 
 import controller.Controller;
+import exceptions.CustomIOException;
+import exceptions.PathIsInvalidException;
 import operations.Operation;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class WindowService extends JDialog {
     protected final Controller controller;
@@ -120,17 +123,22 @@ public class WindowService extends JDialog {
             try {
                 collectData();
                 controller.start(data);
+                new ExceptionWindow(this, "Выполнено!", operation.getNameRus() + " выполнено!");
+                this.dispose();
 
-            } catch (NumberFormatException ex) {
-                String errorMessage = "Ошибка! " + "Для поля смещения введите целое число";
+            } catch (PathIsInvalidException a) {
+                new ExceptionWindow(this, "Error! ", a.getMessage());
+
+            } catch (NumberFormatException b) {
+                String errorMessage = "Ошибка! " + "Для поля смещения введите целое число!";
                 new ExceptionWindow(this, "Error! ", errorMessage);
-            } catch (RuntimeException ex) {
-                new ExceptionWindow(this, "Error! ", ex.getMessage());
+
+            } catch (CustomIOException c) {
+                new ExceptionWindow(this, "Error! ", c.getMessage());
+
+            } catch (RuntimeException d) {
+                new ExceptionWindow(this, "Error! ", d.getMessage());
             }
-
-            new ExceptionWindow(this, "Выполнено!", operation.getNameRus() + " выполнено!");
-            this.dispose();
-
         });
 
         container.add(allField, BorderLayout.NORTH);

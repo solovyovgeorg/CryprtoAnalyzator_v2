@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.CustomIOException;
 import operations.Actions;
 import operations.Operation;
 import view.ViewData;
@@ -19,12 +20,13 @@ public class Controller {
         this.mapActions = mapActions;
     }
 
+
     public void start(ViewData data) {
         Actions action = mapActions.get(data.getOperation());
         try {
             action.execute(data);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomIOException(e.getMessage());
         }
 
     }

@@ -11,7 +11,10 @@ public class ExceptionWindow extends JDialog {
         Container container = this.getContentPane();
 
         JPanel panelText = new JPanel();
-        JLabel labelMessage = new JLabel(message);
+        JTextArea labelMessage = new JTextArea(message);
+        labelMessage.setBackground(owner.getBackground());
+        labelMessage.setEditable(false);
+
         panelText.add(labelMessage);
 
         JPanel panelButton = new JPanel();

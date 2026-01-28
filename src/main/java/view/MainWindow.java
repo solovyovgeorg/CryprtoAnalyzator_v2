@@ -28,6 +28,13 @@ public class MainWindow extends JFrame {
         JButton buttonAnalyze = new JButton("Расшифровка на основе примера (статистический анализ)");
         JButton buttonClose = new JButton("Выход");
 
+        // Установка листенеров на кнопки.
+        buttonCrypt.addActionListener(e -> new WindowService(this, controller, Operation.CRYPT).setVisible(true));
+        buttonDecrypt.addActionListener(e -> new WindowService(this, controller, Operation.DECRYPT).setVisible(true));
+        buttonBrutforce.addActionListener(e -> new WindowService(this, controller, Operation.BROOTFORCE).setVisible(true));
+        buttonAnalyze.addActionListener(e -> new WindowService(this, controller, Operation.ANALYZE).setVisible(true));
+        buttonClose.addActionListener(e -> dispose());
+
         // Описание приложения текстом
         JTextArea description = new JTextArea(
                 "\n\n  Это приложение предназначено для шифрования, расшифрования и анализа \n текстовых файлов, зашифрованных методом символьного сдвига (шифр Цезаря) \n на основе заданного алфавита.\n" +
@@ -47,6 +54,7 @@ public class MainWindow extends JFrame {
 
         // Чтобы этот текст пользователю нельзя было изменять к JtextArea применяется .setEditable(false)
         description.setEditable(false);
+        description.setBackground(this.getBackground());
 
         // Разделяю кнопки на два блока
         JPanel buttonsBlock1 = new JPanel();
@@ -70,11 +78,6 @@ public class MainWindow extends JFrame {
         container.add(description, BorderLayout.NORTH);
         container.add(allButtons, BorderLayout.SOUTH);
 
-        // Установка листенеров на кнопки.
-        buttonCrypt.addActionListener(e -> new WindowService(this, controller, Operation.CRYPT));
-        buttonDecrypt.addActionListener(e -> new WindowService(this, controller, Operation.DECRYPT));
-        buttonBrutforce.addActionListener(e -> new WindowService(this, controller, Operation.BROOTFORCE));
-        buttonAnalyze.addActionListener(e -> new WindowService(this, controller, Operation.ANALYZE));
-        buttonClose.addActionListener(e -> dispose());
+
     }
 }

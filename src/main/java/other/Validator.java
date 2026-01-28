@@ -5,22 +5,28 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Validator {
-    public static boolean inIsValid (ViewData data) {
+    public static boolean isSrcValid (ViewData data) {
+        Path src = Path.of(data.getSrc());
+        return Files.exists(src)
+                && Files.isRegularFile(src)
+                && src.toString().endsWith(".txt");
+    }
+    public static boolean isOutValid (ViewData data) {
         Path src = Path.of(data.getSrc());
         Path out = Path.of(data.getOut());
-        return Files.isRegularFile(src) && src.toString().endsWith(".txt") && Files.isExecutable(src);
+        return !out.equals(src) && out.toString().endsWith(".txt");
     }
-    public static boolean OutIsValid (ViewData data) {
+    public static boolean isSampleValid (ViewData data) {
         Path src = Path.of(data.getSrc());
         Path out = Path.of(data.getOut());
-        return src.toString().endsWith(".txt") && Files.isWritable(out);
+        Path sample = Path.of(data.getSample());
+        return  Files.exists(sample)
+                && Files.isRegularFile(sample)
+                && sample.toString().endsWith(".txt")
+                && !sample.equals(src)
+                && !sample.equals(out);
     }
-    public static boolean SampleIsValid (ViewData data) {
-        Path src = Path.of(data.getSample());
-        Path out = Path.of(data.getOut());
-        return src.toString().endsWith(".txt") && Files.isWritable(out);
-    }
-    public static boolean IsValid (ViewData data) {
-        return inIsValid(data) && OutIsValid(data);
+    public static boolean isValid (ViewData data) {
+        return isSrcValid(data) && isOutValid(data);
     }
 }

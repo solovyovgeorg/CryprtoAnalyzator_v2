@@ -1,7 +1,9 @@
 package model;
 
+import exceptions.PathIsInvalidException;
 import operations.Actions;
 import other.FilesHandler;
+import other.Validator;
 import view.ViewData;
 
 import java.io.IOException;
@@ -18,10 +20,19 @@ public class Analyze implements Actions {
 
     @Override
     public void execute(ViewData data) throws IOException {
+
+        // Выполнение валидации путей перед выполнением файловой операции
+        if (!Validator.isSrcValid(data)) {
+            throw new PathIsInvalidException("Введен неверный путь к файлу - источнику!");
+        } else if (!Validator.isOutValid(data)) {
+            throw new PathIsInvalidException("Выходной файл не может быть создан! \nУбедитесь что формат .txt!");
+        } else if (!Validator.isSampleValid(data)) {
+            throw new PathIsInvalidException("Введен неверный путь к файлу - образцу!");
+        }
+
         String sample = data.getSample();
         char mostOfSample = handler.getStatistic(sample).getFirst().getKey();
-        int indexMostOfSample = Alphabet.alphabetAsMap.get(mostOfSample);//<----------- вычисляем индекс самого вводимого символа образца
-
+        int indexMostOfSample = Alphabet.alphabetAsMap.get(mostOfSample);
 
         String src = data.getSrc();
         char mostOfCrypted = handler.getStatistic(src).getFirst().getKey();
