@@ -1,0 +1,27 @@
+package view;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class ExceptionWindow extends JDialog {
+
+    public ExceptionWindow (JDialog owner, String title,String message) {
+        super(owner, title, true);
+        setBounds(550, 710, 500, 200);
+        Container container = this.getContentPane();
+
+        JPanel panelText = new JPanel();
+        JLabel labelMessage = new JLabel(message);
+        panelText.add(labelMessage);
+
+        JPanel panelButton = new JPanel();
+        JButton buttonOk = new JButton("OK!");
+
+        buttonOk.addActionListener(e -> dispose());
+        panelButton.add(buttonOk);
+
+        container.add(panelText, BorderLayout.CENTER);
+        container.add(panelButton, BorderLayout.SOUTH);
+        this.setVisible(true);
+    }
+}
