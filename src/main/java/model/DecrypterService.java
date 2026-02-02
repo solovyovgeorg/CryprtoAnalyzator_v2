@@ -4,8 +4,8 @@ import operations.Executable;
 import other.FilesHandler;
 import view.ViewData;
 import java.io.IOException;
-/** Сервис дешифрования по заданному ключу */
 
+/** Сервис дешифрования по заданному ключу */
 public class DecrypterService implements Executable {
     private final FilesHandler handler;
     private final Encoder encoder;

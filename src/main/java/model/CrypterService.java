@@ -3,7 +3,6 @@ package model;
 import operations.Executable;
 import other.FilesHandler;
 import view.ViewData;
-import java.io.IOException;
 
 /** Сервис шифрования по заданному ключу */
 public class CrypterService implements Executable {
