@@ -2,15 +2,14 @@ package model;
 
 import java.util.Map;
 
-/*
+/**
  * Логика шифрования, принимает на вход символьный буфер, шифрует ключем и отдает зашифрованный буфер
  */
 
-public class Chipher implements BufferHandler{
+public class Encoder {
     private int key;
     private static final int SIZE = Alphabet.alphabetAsMap.size();
     private final Map<Character, Integer> alphabetIndex = Map.copyOf(Alphabet.alphabetAsMap);
-
 
     public void setKey(int key) {
         this.key = key;
@@ -22,17 +21,14 @@ public class Chipher implements BufferHandler{
             if (alphabetIndex.containsKey(in[i])) {
                 int index = alphabetIndex.get(in[i]);
                 int newIndex = (index + key) % SIZE;
-
                 if (newIndex < 0) {
                     newIndex += SIZE;
                 }
-
                 out[i] = Alphabet.ALPHABET[newIndex];
             } else {
                 out[i] = in[i];
             }
         }
-
         return out;
     }
 }

@@ -1,8 +1,6 @@
 package operations;
 
-/*
-* Перечисление возможных операций производимых над файлами
-*/
+/** Перечисление возможных сервисов шифрования*/
 
 public enum Operation {
     CRYPT("Шифрование"),
@@ -11,8 +9,6 @@ public enum Operation {
     ANALYZE("Анализ");
 
     private final String nameRus;
-
-
 
     Operation(String nameRus) {
         this.nameRus = nameRus;

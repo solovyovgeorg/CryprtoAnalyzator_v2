@@ -1,28 +1,27 @@
 package controller;
 
 import exceptions.CustomIOException;
-import operations.Actions;
+import operations.Executable;
 import operations.Operation;
 import view.ViewData;
-
 import java.io.IOException;
 import java.util.HashMap;
 
-/*
+/**
  * Контроллер запускает необходимую бизнес логику в зависимости от данных переданных в него
  * по DataTransferObject - ViewData()
  */
 
 public class Controller {
-    private final HashMap<Operation, Actions> mapActions;
+    private final HashMap<Operation, Executable> mapServices;
 
-    public Controller(HashMap<Operation, Actions> mapActions) {
-        this.mapActions = mapActions;
+    public Controller(HashMap<Operation, Executable> mapServices) {
+        this.mapServices = mapServices;
     }
 
 
     public void start(ViewData data) {
-        Actions action = mapActions.get(data.getOperation());
+        Executable action = mapServices.get(data.getOperation());
         try {
             action.execute(data);
         } catch (IOException e) {

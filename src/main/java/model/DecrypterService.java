@@ -1,24 +1,23 @@
 package model;
 
-import operations.Actions;
+import operations.Executable;
 import other.FilesHandler;
 import view.ViewData;
-
 import java.io.IOException;
-/** Класс для файловой обработки с методом шифрования/дешифрования */
+/** Сервис дешифрования по заданному ключу */
 
-public class Decrypter implements Actions {
+public class DecrypterService implements Executable {
     private final FilesHandler handler;
-    private final Chipher chipher;
+    private final Encoder encoder;
 
-    public Decrypter(FilesHandler handler, Chipher chipher) {
+    public DecrypterService(FilesHandler handler, Encoder encoder) {
         this.handler = handler;
-        this.chipher = chipher;
+        this.encoder = encoder;
     }
 
     @Override
     public void execute(ViewData data) throws IOException {
-        chipher.setKey(data.getKey());
-        handler.process(data, chipher);
+        encoder.setKey(data.getKey());
+        handler.process(data, encoder);
     }
 }

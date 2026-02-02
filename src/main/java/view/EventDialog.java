@@ -3,9 +3,10 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
-public class ExceptionWindow extends JDialog {
+/** Окно событий, вызывается из ServiceDialog, отображает информацию об успешном/неуспешном выполнении операции*/
+public class EventDialog extends JDialog {
 
-    public ExceptionWindow (JDialog owner, String title,String message) {
+    public EventDialog (JDialog owner, String title,String message) {
         super(owner, title, true);
         setBounds(550, 710, 500, 200);
         Container container = this.getContentPane();

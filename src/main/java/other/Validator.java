@@ -2,10 +2,11 @@ package other;
 
 import exceptions.PathIsInvalidException;
 import view.ViewData;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/** Валидатор введеных пользовательских данных, последовательно проверяет ввод в зависимости от выбранной операции,
+ * в случае несоответствия выбрасывает исключение PathIsInvalidException с сообщением о несоответствии*/
 public class Validator {
     private static final String ERROR_SOURCE = "Введен неверный путь к файлу - источнику!";
     private static final String ERROR_TARGET = "Выходной файл не может быть создан! \nУбедитесь что формат .txt!";

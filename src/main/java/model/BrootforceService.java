@@ -1,25 +1,27 @@
 package model;
 
+import exceptions.CustomIOException;
+import operations.Executable;
 import other.FilesHandler;
 import view.ViewData;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-
-public class BrootforceService implements Actions {
+/** Сервис брутфорса по заданной орфографии, в случае пустой строки пользовательского ввода работает по DEFAULT_SAMPLE */
+public class BrootforceService implements Executable {
     private final FilesHandler handler;
-    private final BufferHandler encoder;
+    private final Encoder encoder;
     private final String DEFAULT_SAMPLE = ", ";
 
-    public BrootforceService(FilesHandler handler, BufferHandler encoder) {
+    public BrootforceService(FilesHandler handler, Encoder encoder) {
         this.handler = handler;
         this.encoder = encoder;
     }
 
     @Override
-    public void execute(ViewData data) throws IOException {
-        // В случае переданного пустого поля образца орфографии использовать дефолтную
+    public void execute(ViewData data) throws CustomIOException {
+        /** В случае переданного пустого поля образца орфографии использовать дефолтную */
         if (data.getTextSample() == null || data.getTextSample().isEmpty()) {
             data.setTextSample(DEFAULT_SAMPLE);
         }
@@ -46,6 +48,8 @@ public class BrootforceService implements Actions {
                     builder.setLength(0);
                     len = fr.read(buffer);
                 }
+            } catch (IOException e) {
+                throw new CustomIOException(e.getMessage());
             }
             keyCounter++;
         }

@@ -1,28 +1,23 @@
 package model;
 
-import exceptions.PathIsInvalidException;
-import operations.Actions;
-import operations.Operation;
+import operations.Executable;
 import other.FilesHandler;
-import other.Validator;
 import view.ViewData;
-
 import java.io.IOException;
-/**
- Класс для файловой обработки с методом шифрования/дешифрования */
 
-public class Crypter implements Actions {
+/** Сервис шифрования по заданному ключу */
+public class CrypterService implements Executable {
     private final FilesHandler handler;
-    private final Chipher chipher;
+    private final Encoder encoder;
 
-    public Crypter(FilesHandler handler, Chipher chipher) {
+    public CrypterService(FilesHandler handler, Encoder encoder) {
         this.handler = handler;
-        this.chipher = chipher;
+        this.encoder = encoder;
     }
 
     @Override
-    public void execute(ViewData data) throws IOException {
-        chipher.setKey(data.getKey());
-        handler.process(data, chipher);
+    public void execute(ViewData data){
+        encoder.setKey(data.getKey());
+        handler.process(data, encoder);
     }
 }

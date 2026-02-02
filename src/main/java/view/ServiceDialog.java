@@ -8,8 +8,8 @@ import other.Validator;
 import javax.swing.*;
 import java.awt.*;
 
-/** Класс для отрисовки окон сервисов шифрования */
-public class WindowService extends JDialog {
+/** Класс для отрисовки окон сервисов шифрования, также здесь происходит обработка исключений */
+public class ServiceDialog extends JDialog {
     private final Controller controller;
     private final Operation operation;
     private ViewData data;
@@ -34,7 +34,7 @@ public class WindowService extends JDialog {
     private JLabel labelTextSample = new JLabel("Образец орфографии: ");
     private JLabel labelKey = new JLabel("На сколько символов сместить шифр? ");
 
-    public WindowService(Frame owner,
+    public ServiceDialog(Frame owner,
                          Controller controller,
                          Operation operation) {
         super(owner, operation.getNameRus(), true);
@@ -42,7 +42,7 @@ public class WindowService extends JDialog {
         this.operation = operation;
         draw();
     }
-    // Отрисовка окон с заданными параметрами:
+    /** Отрисовка окон с заданными параметрами */
     public void draw() {
         setBounds(500, 650, 600, 300);
         Container container = this.getContentPane();
@@ -98,24 +98,24 @@ public class WindowService extends JDialog {
                 collectData();
                 Validator.checkUserInput(data);
                 controller.start(data);
-                new ExceptionWindow(this, "Выполнено!", operation.getNameRus() + " выполнено!");
+                new EventDialog(this, "Выполнено!", operation.getNameRus() + " выполнено!");
                 this.dispose();
             } catch (PathIsInvalidException a) {
-                new ExceptionWindow(this, "Error! ", a.getMessage());
+                new EventDialog(this, "Ошибка! ", a.getMessage());
             } catch (NumberFormatException b) {
                 String errorMessage = "Ошибка! " + "Для поля смещения введите целое число!";
-                new ExceptionWindow(this, "Error! ", errorMessage);
+                new EventDialog(this, "Ошибка! ", errorMessage);
             } catch (CustomIOException c) {
-                new ExceptionWindow(this, "Error! ", c.getMessage());
+                new EventDialog(this, "Ошибка! ", c.getMessage());
             } catch (RuntimeException d) {
-                new ExceptionWindow(this, "Error! ", d.getMessage());
+                new EventDialog(this, "Ошибка! ", d.getMessage());
             }
         });
         container.add(allField, BorderLayout.NORTH);
         container.add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    // Метод получения информации с полей окна ввода
+    /** Метод получения информации с полей окна ввода, присвоение знака ключа для шифрования/дешифрования */
     public void collectData () throws NumberFormatException {
         data = new ViewData();
         data.setSrc(inputSrc.getText());

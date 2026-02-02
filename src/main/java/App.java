@@ -1,38 +1,38 @@
 import controller.Controller;
 import model.*;
-import operations.Actions;
+import operations.Executable;
 import operations.Operation;
 import other.FilesHandler;
-import view.MainWindow;
+import view.MainFrame;
+import javax.swing.*;
+import java.io.IOException;
 import java.util.HashMap;
 
- /*
- * Сборка основных объектов и запуск оболочки
+/** Сборка основных объектов и запуск оболочки
  */
 
 public class App {
-    public static void main(String[] args) {
-        // Создание классов
-        Chipher chipher = new Chipher();
+    public static void main(String[] args) throws IOException {
+        /** Создание классов */
+        Encoder encoder = new Encoder();
         FilesHandler handler = new FilesHandler();
+        Executable crypter = new CrypterService(handler, encoder);
+        Executable decrypter = new CrypterService(handler, encoder);
+        Executable brootforce = new BrootforceService(handler, encoder);
+        Executable analyze = new AnalyzeService(handler, encoder);
 
-        Actions crypter = new Crypter(handler, chipher);
-        Actions decrypter = new Crypter(handler, chipher);
-        Actions brootforce = new Brootforce(handler, chipher);
-        Actions analyze = new Analyze(handler, chipher);
+        /** Список Executable сервисов по enum Operations */
+        HashMap<Operation, Executable> services = new HashMap<>();
 
-        //Список операций по enum Operations
-        HashMap<Operation, Actions> actions = new HashMap<>();
+        services.put(Operation.CRYPT, crypter);
+        services.put(Operation.DECRYPT, decrypter);
+        services.put(Operation.BROOTFORCE, brootforce);
+        services.put(Operation.ANALYZE, analyze);
 
-        actions.put(Operation.CRYPT, crypter);
-        actions.put(Operation.DECRYPT, decrypter);
-        actions.put(Operation.BROOTFORCE, brootforce);
-        actions.put(Operation.ANALYZE, analyze);
+        Controller controller = new Controller(services);
 
-        Controller controller = new Controller(actions);
-
-        // Запуск GUI, внутри которого будет вызываться контроллер
-        MainWindow mainWindow = new MainWindow(controller);
-        mainWindow.setVisible(true);
+        /** Запуск GUI, внутри которого будет вызываться контроллер с переданными данными пользовательского ввода */
+            MainFrame mainFrame = new MainFrame(controller);
+            mainFrame.setVisible(true);
     }
 }

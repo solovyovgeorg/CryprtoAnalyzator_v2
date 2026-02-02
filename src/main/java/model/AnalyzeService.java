@@ -1,35 +1,30 @@
 package model;
 
-
-import operations.Actions;
+import operations.Executable;
 import other.FilesHandler;
 import view.ViewData;
-import java.io.IOException;
 
 /** Назначение класса - сервис статистического анализа, сравнивает наиболее часто встречающиеся символы
  * в зашифрованном файле и файле с предпологаемой похожей стилистикой. На основе сравнения вычисляет ключ смещения.
- *
  */
-public class Analyze implements Actions {
+public class AnalyzeService implements Executable {
     private final FilesHandler handler;
-    private final Chipher chipher;
+    private final Encoder encoder;
     private final static int SIZE = Alphabet.alphabetAsMap.size();
 
-    public Analyze(FilesHandler handler, Chipher chipher) {
+    public AnalyzeService(FilesHandler handler, Encoder encoder) {
         this.handler = handler;
-        this.chipher = chipher;
+        this.encoder = encoder;
     }
 
     @Override
-    public void execute(ViewData data) throws IOException {
-        String sample = data.getSample();
-        char mostOfSample = handler.getStatistic(sample).getFirst().getKey();
+    public void execute(ViewData data) {
+        char mostOfSample = handler.getStatistic(data.getSample()).getFirst().getKey();
         int indexMostOfSample = Alphabet.alphabetAsMap.get(mostOfSample);
-        String src = data.getSrc();
-        char mostOfCrypted = handler.getStatistic(src).getFirst().getKey();
+        char mostOfCrypted = handler.getStatistic(data.getSrc()).getFirst().getKey();
         int indexMostOfCrypted = Alphabet.alphabetAsMap.get(mostOfCrypted);
         int key = ((indexMostOfSample - indexMostOfCrypted + SIZE) % SIZE);
-        chipher.setKey(key);
-        handler.process(data,chipher);
+        encoder.setKey(key);
+        handler.process(data,encoder);
     }
 }
