@@ -60,7 +60,7 @@ public class MainWindow extends JFrame {
         JPanel buttonsBlock1 = new JPanel();
         JPanel buttonsBlock2 = new JPanel();
 
-        // В первый блок добавляю Crypter, Decrypter, Brutforce кнопки
+        // В первый блок добавляю CrypterService, DecrypterService, BrutforceService кнопки
         buttonsBlock1.add(buttonCrypt);
         buttonsBlock1.add(buttonDecrypt);
         buttonsBlock1.add(buttonBrutforce);

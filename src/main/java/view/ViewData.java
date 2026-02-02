@@ -2,6 +2,7 @@ package view;
 
 import operations.Operation;
 
+/** Предназначение класса - DTO Data Transfer Object - хранение данных пользовательского ввода, для передачи контроллеру */
 public class ViewData {
     private String src;
     private String out;
