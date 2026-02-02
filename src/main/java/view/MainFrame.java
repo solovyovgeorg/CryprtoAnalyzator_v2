@@ -9,6 +9,7 @@ import java.io.IOException;
 
 
 /** Главное окно, здесь пользователь выбирает необходимую операцию*/
+
 public class MainFrame extends JFrame {
     private final Controller controller;
 

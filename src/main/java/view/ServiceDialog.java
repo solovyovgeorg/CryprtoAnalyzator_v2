@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /** Класс для отрисовки окон сервисов шифрования, также здесь происходит обработка исключений */
+
 public class ServiceDialog extends JDialog {
     private final Controller controller;
     private final Operation operation;
@@ -21,8 +22,8 @@ public class ServiceDialog extends JDialog {
     private JButton buttonConfirm = new JButton("Выполнить");
     private JButton buttonClose = new JButton("Отмена");
 
-    private JTextField inputSrc = new JTextField("C:\\test\\out.txt", 15);
-    private JTextField inputOut = new JTextField("C:\\test\\test.txt", 15);
+    private JTextField inputSrc = new JTextField("C:\\test\\src.txt", 15);
+    private JTextField inputOut = new JTextField("C:\\test\\out.txt", 15);
     private JTextField inputSample = new JTextField("C:\\test\\sample.txt", 15);
     private JTextField inputTextSample = new JTextField(", а", 8);
     private JTextField inputKey = new JTextField("1", 8);

@@ -1,11 +1,13 @@
 package model;
 
+import exceptions.CustomIOException;
 import operations.Executable;
 import other.FilesHandler;
 import view.ViewData;
 import java.io.IOException;
 
 /** Сервис дешифрования по заданному ключу */
+
 public class DecrypterService implements Executable {
     private final FilesHandler handler;
     private final Encoder encoder;
@@ -16,7 +18,7 @@ public class DecrypterService implements Executable {
     }
 
     @Override
-    public void execute(ViewData data) throws IOException {
+    public void execute(ViewData data) {
         encoder.setKey(data.getKey());
         handler.process(data, encoder);
     }

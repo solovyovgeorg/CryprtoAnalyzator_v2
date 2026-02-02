@@ -5,6 +5,7 @@ import other.FilesHandler;
 import view.ViewData;
 
 /** Сервис шифрования по заданному ключу */
+
 public class CrypterService implements Executable {
     private final FilesHandler handler;
     private final Encoder encoder;

@@ -7,6 +7,7 @@ import view.ViewData;
 /** Назначение класса - сервис статистического анализа, сравнивает наиболее часто встречающиеся символы
  * в зашифрованном файле и файле с предпологаемой похожей стилистикой. На основе сравнения вычисляет ключ смещения.
  */
+
 public class AnalyzeService implements Executable {
     private final FilesHandler handler;
     private final Encoder encoder;

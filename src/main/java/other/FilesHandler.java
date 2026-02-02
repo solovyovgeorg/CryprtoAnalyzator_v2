@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /** Обработчик файлов с шифрованием и сбором статистики для AnalyzeService*/
+
 public class FilesHandler {
     public void process(ViewData data, Encoder encoder) throws CustomIOException {
         try (FileReader fr = new FileReader(data.getSrc());

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /** Окно событий, вызывается из ServiceDialog, отображает информацию об успешном/неуспешном выполнении операции*/
+
 public class EventDialog extends JDialog {
 
     public EventDialog (JDialog owner, String title,String message) {

@@ -9,10 +9,11 @@ import java.io.IOException;
 import java.util.HashMap;
 
 /** Сервис брутфорса по заданной орфографии, в случае пустой строки пользовательского ввода работает по DEFAULT_SAMPLE */
+
 public class BrootforceService implements Executable {
     private final FilesHandler handler;
     private final Encoder encoder;
-    private final String DEFAULT_SAMPLE = ", ";
+    private final String DEFAULT_SAMPLE = ", а";
 
     public BrootforceService(FilesHandler handler, Encoder encoder) {
         this.handler = handler;

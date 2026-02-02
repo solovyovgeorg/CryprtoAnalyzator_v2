@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /** Алфавит-константа */
+
 public class Alphabet {
     public static final char[] ALPHABET =
             {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К','Л',
