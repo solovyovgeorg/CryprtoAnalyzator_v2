@@ -1,10 +1,9 @@
 package controller;
 
-import exceptions.CustomIOException;
+
 import operations.Executable;
 import operations.Operation;
 import view.ViewData;
-import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -22,12 +21,7 @@ public class Controller {
 
     public void start(ViewData data) {
         Executable action = mapServices.get(data.getOperation());
-        try {
             action.execute(data);
-        } catch (IOException e) {
-            throw new CustomIOException(e.getMessage());
-        }
-
     }
 
 }
