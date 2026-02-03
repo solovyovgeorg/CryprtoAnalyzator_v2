@@ -18,8 +18,7 @@ public class Controller {
     public Controller(HashMap<Operation, Executable> mapServices) {
         this.mapServices = mapServices;
     }
-
-
+    
     public void start(ViewData data) {
         Validator.checkUserInput(data);
         Executable action = mapServices.get(data.getOperation());
