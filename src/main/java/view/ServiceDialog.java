@@ -18,17 +18,13 @@ public class ServiceDialog extends JDialog {
     private final int Y_POS = 650;
     private final int WIDTH = 600;
     private final int HEIGHT = 300;
-
     private JButton buttonConfirm = new JButton("Выполнить");
     private JButton buttonClose = new JButton("Отмена");
-
     private JTextField inputSrc = new JTextField("C:\\test\\src.txt", 15);
     private JTextField inputOut = new JTextField("C:\\test\\out.txt", 15);
     private JTextField inputSample = new JTextField("C:\\test\\sample.txt", 15);
     private JTextField inputTextSample = new JTextField(", а", 8);
     private JTextField inputKey = new JTextField("1", 8);
-
-
     private JLabel labelSrc = new JLabel("Путь к файлу-источнику: ");
     private JLabel labelOut = new JLabel("Путь к выходному файлу: ");
     private JLabel labelSample = new JLabel("Путь к файлу - образцу: ");
@@ -97,7 +93,6 @@ public class ServiceDialog extends JDialog {
         buttonConfirm.addActionListener(e -> {
             try {
                 collectData();
-                Validator.checkUserInput(data);
                 controller.start(data);
                 new EventDialog(this, "Выполнено!", operation.getNameRus() + " выполнено!");
                 this.dispose();

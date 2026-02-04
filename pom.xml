@@ -6,7 +6,7 @@
 
     <groupId>src.main</groupId>
     <artifactId>Analyzator</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>v2</version>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>

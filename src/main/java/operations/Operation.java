@@ -13,6 +13,7 @@ public enum Operation {
     Operation(String nameRus) {
         this.nameRus = nameRus;
     }
+
     public String getNameRus(){
         return this.nameRus;
     }

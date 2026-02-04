@@ -3,6 +3,7 @@ package controller;
 
 import operations.Executable;
 import operations.Operation;
+import other.Validator;
 import view.ViewData;
 import java.util.HashMap;
 
@@ -17,9 +18,9 @@ public class Controller {
     public Controller(HashMap<Operation, Executable> mapServices) {
         this.mapServices = mapServices;
     }
-
-
+    
     public void start(ViewData data) {
+        Validator.checkUserInput(data);
         Executable action = mapServices.get(data.getOperation());
             action.execute(data);
     }
